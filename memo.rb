@@ -23,15 +23,15 @@ end
 post '/' do
   id = SecureRandom.uuid
   time = Time.now.strftime('%Y%m%d')
-  article = h(params[:article])
-  content = h(params[:content])
+  article = params[:article]
+  content = params[:content]
   json = []
-  json = { id: id, article: article, content: content, time: time }
+  json = { id: id, article: h(article), content: h(content), time: time }
   File.open("memo/#{json[:id]}.json", 'w') do |file|
-    JSON.dump(json, file)
+  JSON.dump(json, file)
   end
   redirect '/'
-  erb :result
+  # erb :result
 end
 
 get '/new' do
@@ -47,7 +47,7 @@ end
 
 get '/:id/edit' do
   id = params[:id]
-  @detail_memo_data = []
+  # @detail_memo_data = []
   @detail_memo_data = JSON.parse(File.open("memo/#{id}.json").read)
   erb :edit
 end
@@ -60,22 +60,22 @@ get '/:id/delete' do
 end
 
 patch '/:id' do
-  @id = params[:id]
-  @time = Time.now.strftime('%Y%m%d')
-  @article = h(params[:article])
-  @content = h(params[:content])
+  id = params[:id]
+  time = Time.now.strftime('%Y%m%d')
+  article = params[:article]
+  content = params[:content]
   json = []
-  json = { id: @id, article: @article, content: @content, time: @time }
-  File.open("memo/#{@id}.json", 'w') do |file|
-    JSON.dump(json, file)
+  json = { id: id, article: h(article), content: h(content), time: time }
+  File.open("memo/#{json[:id]}.json", 'w') do |file|
+  JSON.dump(json, file)
   end
   redirect '/'
-  erb :result
+  # erb :result
 end
 
 delete '/:id' do
-  @id = params[:id]
-  File.delete("memo/#{@id}.json")
+  id = params[:id]
+  File.delete("memo/#{id}.json")
   redirect '/'
-  erb :result
+  # erb :result
 end
