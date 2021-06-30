@@ -21,12 +21,12 @@ get '/' do
 end
 
 post '/' do
-  @id = SecureRandom.uuid
-  @time = Time.now.strftime('%Y%m%d')
-  @article = h(params[:article])
-  @content = h(params[:content])
+  id = SecureRandom.uuid
+  time = Time.now.strftime('%Y%m%d')
+  article = h(params[:article])
+  content = h(params[:content])
   json = []
-  json = { id: @id, article: @article, content: @content, time: @time }
+  json = { id: id, article: article, content: content, time: time }
   File.open("memo/#{json[:id]}.json", 'w') do |file|
     JSON.dump(json, file)
   end
