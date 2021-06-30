@@ -31,7 +31,6 @@ post '/' do
   JSON.dump(json, file)
   end
   redirect '/'
-  # erb :result
 end
 
 get '/new' do
@@ -47,7 +46,6 @@ end
 
 get '/:id/edit' do
   id = params[:id]
-  # @detail_memo_data = []
   @detail_memo_data = JSON.parse(File.open("memo/#{id}.json").read)
   erb :edit
 end
@@ -70,12 +68,10 @@ patch '/:id' do
   JSON.dump(json, file)
   end
   redirect '/'
-  # erb :result
 end
 
 delete '/:id' do
   id = params[:id]
   File.delete("memo/#{id}.json")
   redirect '/'
-  # erb :result
 end
