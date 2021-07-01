@@ -26,7 +26,7 @@ post '/' do
   article = params[:article]
   content = params[:content]
   json = []
-  json = { id: id, article: h(article), content: h(content), time: time }
+  json = { id: id, article: article, content: content, time: time }
   File.open("memo/#{json[:id]}.json", 'w') do |file|
   JSON.dump(json, file)
   end
