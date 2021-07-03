@@ -1,0 +1,22 @@
+<div class ="detail">
+
+<div class ="detail-title">
+<h2>メモ詳細</h2>
+</div>
+
+<dl class ="detail-contents">
+<dt class ="detail-contents-label">ID</dt>
+<dd class ="detail-contents-desc"><%= h(@detail_memo_data["id"]) %></dd>
+<dt class ="detail-contents-label">件名</dt>
+<dd class ="detail-contents-desc"><%= h(@detail_memo_data["article"]) %></dd>
+<dt class ="detail-contents-label">内容</dt>
+<dd class ="detail-contents-desc"><%= h(@detail_memo_data["content"]) %></dd>
+<dt class ="detail-contents-label">作成日</dt>
+<dd class ="detail-contents-desc"><%= h(@detail_memo_data["time"]) %></dd>
+</dl>
+
+<div class="detail-post">
+        <a href="/<%= @detail_memo_data["id"] %>/edit" class ="btn-2">変更</a>
+        <a href="/<%= @detail_memo_data["id"] %>/delete" class ="btn-2">削除</a>
+</div>
+</div>
