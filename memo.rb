@@ -42,14 +42,25 @@ get '/' do
 end
 
 post '/' do
+<<<<<<< HEAD
   @id = SecureRandom.uuid
   @time = Time.now.strftime('%Y%m%d')
   @article = h(params[:article])
   @content = h(params[:content])
   conn = PG.connect(dbname: DB_NAME.to_s)
   conn.exec("INSERT INTO #{TABLE_NAME}(id,article,content,time) VALUES('#{@id}','#{@article}','#{@content}','#{@time}')")
+=======
+  id = SecureRandom.uuid
+  time = Time.now.strftime('%Y%m%d')
+  article = params[:article]
+  content = params[:content]
+  json = []
+  json = { id: id, article: article, content: content, time: time }
+  File.open("memo/#{json[:id]}.json", 'w') do |file|
+  JSON.dump(json, file)
+  end
+>>>>>>> master
   redirect '/'
-  erb :result
 end
 
 get '/new' do
@@ -63,8 +74,13 @@ get '/:id' do
 end
 
 get '/:id/edit' do
+<<<<<<< HEAD
   @id = params[:id]
   detail_data_create
+=======
+  id = params[:id]
+  @detail_memo_data = JSON.parse(File.open("memo/#{id}.json").read)
+>>>>>>> master
   erb :edit
 end
 
@@ -75,20 +91,35 @@ get '/:id/delete' do
 end
 
 patch '/:id' do
+<<<<<<< HEAD
   @id = params[:id]
   @time = Time.now.strftime('%Y%m%d')
   @article = h(params[:article])
   @content = h(params[:content])
   conn = PG.connect(dbname: DB_NAME.to_s)
   conn.exec("UPDATE #{TABLE_NAME} SET article ='#{@article}',content='#{@content}',time='#{@time}' WHERE id=$1;", [@id])
+=======
+  id = params[:id]
+  time = Time.now.strftime('%Y%m%d')
+  article = params[:article]
+  content = params[:content]
+  json = []
+  json = { id: id, article: h(article), content: h(content), time: time }
+  File.open("memo/#{json[:id]}.json", 'w') do |file|
+  JSON.dump(json, file)
+  end
+>>>>>>> master
   redirect '/'
-  erb :result
 end
 
 delete '/:id' do
+<<<<<<< HEAD
   @id = params[:id]
   conn = PG.connect(dbname: DB_NAME.to_s)
   conn.exec("DELETE FROM #{TABLE_NAME} WHERE id=$1;", [@id])
+=======
+  id = params[:id]
+  File.delete("memo/#{id}.json")
+>>>>>>> master
   redirect '/'
-  erb :result
 end
