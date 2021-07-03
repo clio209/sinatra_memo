@@ -6,15 +6,6 @@
 
 <dl class ="detail-contents">
 <dt class ="detail-contents-label">ID</dt>
-<<<<<<< HEAD
-<dd class ="detail-contents-desc"><%= @detail_memo_data[:id] %></dd>
-<dt class ="detail-contents-label">件名</dt>
-<dd class ="detail-contents-desc"><%= @detail_memo_data[:article] %></dd>
-<dt class ="detail-contents-label">内容</dt>
-<dd class ="detail-contents-desc"><%= @detail_memo_data[:content] %></dd>
-<dt class ="detail-contents-label">作成日</dt>
-<dd class ="detail-contents-desc"><%= @detail_memo_data[:time] %></dd>
-=======
 <dd class ="detail-contents-desc"><%= h(@detail_memo_data["id"]) %></dd>
 <dt class ="detail-contents-label">件名</dt>
 <dd class ="detail-contents-desc"><%= h(@detail_memo_data["article"]) %></dd>
@@ -22,7 +13,6 @@
 <dd class ="detail-contents-desc"><%= h(@detail_memo_data["content"]) %></dd>
 <dt class ="detail-contents-label">作成日</dt>
 <dd class ="detail-contents-desc"><%= h(@detail_memo_data["time"]) %></dd>
->>>>>>> master
 </dl>
 
 <div class="detail-post">
