@@ -17,21 +17,21 @@ helpers do
 end
 
 def memo_all_data_create
-  @memo_all_data = []
+  @memos = []
   conn = PG.connect(dbname: DB_NAME.to_s)
   conn.exec("SELECT * FROM #{TABLE_NAME}") do |result|
     result.each do |row|
-      @memo_all_data << { id: row['id'], article: row['article'], content: row['content'], time: row['time'] }
+      @memos << { id: row['id'], article: row['article'], content: row['content'], time: row['time'] }
     end
   end
 end
 
 def detail_data_create
-  @detail_memo_data = []
+  @memo = []
   conn = PG.connect(dbname: DB_NAME.to_s)
   conn.exec("SELECT * FROM #{TABLE_NAME} WHERE id = '#{@id}'") do |result|
     result.each do |row|
-      @detail_memo_data = { id: row['id'], article: row['article'], content: row['content'], time: row['time'] }
+      @memo = { id: row['id'], article: row['article'], content: row['content'], time: row['time'] }
     end
   end
 end
