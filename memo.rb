@@ -45,8 +45,8 @@ end
 post '/' do
   @id = SecureRandom.uuid
   @time = Time.now.strftime('%Y%m%d')
-  @article = h(params[:article])
-  @content = h(params[:content])
+  @article = params[:article]
+  @content = params[:content]
   conn = PG.connect(dbname: DB_NAME.to_s)
   conn.exec("INSERT INTO #{TABLE_NAME}(id,article,content,time) VALUES('#{@id}','#{@article}','#{@content}','#{@time}')")
   redirect '/'
