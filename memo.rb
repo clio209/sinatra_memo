@@ -27,13 +27,13 @@ def memo_all_data_create
 end
 
 def detail_data_create
-  @memo = []
+  # @memo = []
   conn = PG.connect(dbname: DB_NAME.to_s)
   conn.exec("SELECT * FROM #{TABLE_NAME} WHERE id=$1;",[@id]) do |result|
-  @memo = result.map do |row|
+  @memo = Hash[*result.map {|n| n}]
     # result.each do |row|
     #   @memo = { id: row['id'], article: row['article'], content: row['content'], time: row['time'] }
-    end
+    # end
   end
 end
 

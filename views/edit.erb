@@ -1,11 +1,11 @@
 miru<div class="form>">
-<form action= "/<%= @memo[:id] %>" method= "post">
+<form action= "/<%= @memo["id"] %>" method= "post">
  <input type="hidden" name="_method" value="patch">
  <div class="form-items">
 <div class="label"><label for= "article">件名</label></div>
-<p><textarea name= "article" colt="80" rows="1"><%= @memo[:article] %></textarea></p>
+<p><textarea name= "article" colt="80" rows="1"><%= @memo["article"] %></textarea></p>
 <div class="label"><label for= "content">内容</label></div>
-<p><textarea name= "content" cols="80" rows="10"><%= @memo[:content] %></textarea></P>
+<p><textarea name= "content" cols="80" rows="10"><%= @memo["content"] %></textarea></P>
 <input type= "submit" value = "変更" class ="btn-2">
 </div>
 </form>
