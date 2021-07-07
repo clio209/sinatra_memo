@@ -17,6 +17,9 @@
 
 <div class="detail-post">
         <a href="/<%= @memo["id"] %>/edit" class ="btn-2">変更</a>
-        <a href="/<%= @memo["id"] %>/delete" class ="btn-2">削除</a>
+        <form action= "/<%= @memo["id"] %>" method= "post">
+        <input type="hidden" name="_method" value="delete">
+        <input type= "submit" value = "削除" class ="btn-2">
+        </form>      
 </div>
 </div>

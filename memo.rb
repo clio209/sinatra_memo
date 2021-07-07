@@ -68,12 +68,6 @@ get '/:id/edit' do
   erb :edit
 end
 
-get '/:id/delete' do
-  @id = params[:id]
-  detail_data_create
-  erb :delete
-end
-
 patch '/:id' do
   @id = params[:id]
   @time = Time.now.strftime('%Y%m%d')
