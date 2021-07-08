@@ -20,9 +20,10 @@ def memo_all_data_create
   @memos = []
   conn = PG.connect(dbname: DB_NAME.to_s)
   conn.exec("SELECT * FROM #{TABLE_NAME}") do |result|
-    result.each do |row|
-      @memos << { id: row['id'], article: row['article'], content: row['content'], time: row['time'] }
-    end
+  @memos << Hash[*result.map {|n| n}]
+    # result.each do |row|
+    #   @memos << { id: row['id'], article: row['article'], content: row['content'], time: row['time'] }
+    # end
   end
 end
 
