@@ -20,7 +20,8 @@ def memo_all_data_create
   @memos = []
   conn = PG.connect(dbname: DB_NAME.to_s)
   conn.exec("SELECT * FROM #{TABLE_NAME}") do |result|
-  @memos << Hash[*result.map {|n| n}]
+  @memos = result.to_a
+  # @memos << Hash[*result.map {|n| n}]
     # result.each do |row|
     #   @memos << { id: row['id'], article: row['article'], content: row['content'], time: row['time'] }
     # end
@@ -31,7 +32,8 @@ def detail_data_create
   # @memo = []
   conn = PG.connect(dbname: DB_NAME.to_s)
   conn.exec("SELECT * FROM #{TABLE_NAME} WHERE id=$1;",[@id]) do |result|
-  @memo = Hash[*result.map {|n| n}]
+  @memo = Hash[*result.to_a]
+  # @memo = Hash[*result.map {|n| n}]
     # result.each do |row|
     #   @memo = { id: row['id'], article: row['article'], content: row['content'], time: row['time'] }
     # end
